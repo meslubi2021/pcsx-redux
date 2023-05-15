@@ -1587,6 +1587,12 @@ class CDRomImpl : public PCSX::CDRom {
         lidSeekInterrupt();
     }
 
+// rveach
+#define binaryCodedDecimalToInt(i) (((i >> 4) & 0xf) * 10 + (i & 0xf))
+#define GetSectorFromMSF(array) \
+    ((binaryCodedDecimalToInt(array[0]) * 60 + binaryCodedDecimalToInt(array[1])) * 75 + \
+     binaryCodedDecimalToInt(array[2]) - 150)
+
     void logCDROM(int command) {
         const auto delayedString = (command & 0x100) ? "[Delayed]" : "";  // log if this is a delayed CD-ROM IRQ
         uint32_t pc = PCSX::g_emulator->m_cpu->m_regs.pc;
@@ -1598,8 +1604,8 @@ class CDRomImpl : public PCSX::CDRom {
                                     m_param[0]);
                 break;
             case CdlSetloc:
-                PCSX::g_system->log(PCSX::LogClass::CDROM, "%08x [CDROM]%s Command: CdlSetloc %02x:%02x:%02x\n", pc,
-                                    delayedString, m_param[0], m_param[1], m_param[2]);
+                PCSX::g_system->log(PCSX::LogClass::CDROM, "%08x [CDROM]%s Command: CdlSetloc %02x:%02x:%02x (%06i)\n", pc,
+                                    delayedString, m_param[0], m_param[1], m_param[2], GetSectorFromMSF(m_param));
                 break;
             case CdlPlay:
                 PCSX::g_system->log(PCSX::LogClass::CDROM, "%08x [CDROM]%s Command: CdlPlay %i\n", pc, delayedString,
