@@ -20,9 +20,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="..\..\resources\pcsx-redux.ico">
       <Filter>Resource Files</Filter>
     </Image>
@@ -39,5 +36,8 @@
     <ClInclude Include="..\..\src\forced-includes\imgui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

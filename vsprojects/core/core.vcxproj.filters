@@ -266,13 +266,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="..\..\src\core\pcsxffi.lua">
       <Filter>Source Files</Filter>
     </None>
     <None Include="..\..\src\core\isoffi.lua">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
