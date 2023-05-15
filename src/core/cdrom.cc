@@ -1450,6 +1450,15 @@ class CDRomImpl : public PCSX::CDRom {
                     }
                 }
 
+                // rveach
+                if (PCSX ::g_emulator->settings.get<PCSX::Emulator::SettingDebugSettings>()
+                        .get<PCSX::Emulator::DebugSettings::LoggingCDROM>()) {
+                    uint32_t pc = PCSX::g_emulator->m_cpu->m_regs.pc;
+
+                    PCSX::g_system->log(PCSX::LogClass::CDROM, "%08x [CDROM] Command: Read %05Xh bytes from the Sector into %08Xh\n", pc,
+                                        cdsize, madr);
+                }
+
                 PCSX::IO<PCSX::File> memFile = PCSX::g_emulator->m_mem->getMemoryAsFile();
                 memFile->wSeek(madr);
 
