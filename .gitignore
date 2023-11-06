@@ -6,6 +6,9 @@
 *.sln.docstates
 *.userprefs
 
+# Eclipse Files
+/.metadata
+
 #Clion Files
 .idea/
 
